@@ -1,0 +1,22 @@
+<div class="container-fluid" id="logP">
+  <div class="row" id="logStyle" > 
+     <form #playerForm='ngForm' novalidate (ngSubmit)="loginPlayer()" class="container mx-auto col-6 py-5" style="background-color: rgba(240, 255, 255, 0.397); top:100px; ">
+      <h1 *ngIf='isRegistered' class="row ml-3 text-success">{{Div}}</h1>
+      <h1 *ngIf='isErrAuth' class="row ml-3 text-danger">{{authDiv}}</h1>
+
+      <div class="form-group">
+        <label>Phone :</label>
+        <input type="text" class="form-control" [class.is-invalid]="phone.invalid && phone.touched"
+        #phone="ngModel" required [(ngModel)]="playerModel.playerPhone" name="playerPhone">
+       </div> 
+       <div class="form-group">
+        <label>Password :</label>
+        <input type="password" class="form-control" [class.is-invalid]="password.invalid && password.touched"
+        #password="ngModel" required [(ngModel)]="playerModel.password" name="password" >
+      </div>
+         <input type="submit" [disabled]="playerForm.form.invalid" class="btn btn-primary" value="Log In">
+         <h4 *ngIf='isErr' class="row text-danger">{{errDiv}}</h4>
+     
+    </form> 
+    </div>
+</div>

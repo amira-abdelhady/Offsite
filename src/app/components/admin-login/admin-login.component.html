@@ -1,0 +1,52 @@
+  <div class="container-fluid">
+    <div class="row">
+            <main style="margin-top: 70px;"> 
+                <mat-card> 
+                   <form (submit)="onAdminLogin(adminLogin)" #adminLogin="ngForm">
+                       <mat-form-field>  
+                           <input
+                            matInput
+                            type="text"
+                            pattern="^01[0-2]{1}[0-9]{8}"
+                            class="form-control"
+                            name="adminPhone" 
+                            ngModel
+                            placeholder="Phone"
+                            #phoneInput="ngModel"  
+                            required
+                            >
+                            <mat-error *ngIf="phoneInput.invalid">Please enter a valid phone number.</mat-error> 
+       
+                      </mat-form-field>
+                      <mat-form-field>
+                           <input
+                            matInput
+                            type="password"
+                            class="form-control"
+                            name="adminPassword" 
+                            ngModel
+                            placeholder="Password"
+                            #passwordInput="ngModel"  
+                            required>
+                           <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error> 
+                       </mat-form-field>
+                       
+                    <button 
+                     mat-raised-button 
+                     type="submit" 
+                     class="btn btn-primary"
+                     *ngIf='!isLoading' >LogIn</button>
+                    
+                   </form>
+                   <mat-spinner *ngIf='isLoading'></mat-spinner>
+                   <a routerLink='/restPass' class="btn btn-info">Forget Password?</a>
+           
+               </mat-card>
+           </main> 
+    </div>
+</div>  
+
+
+ 
+
+  

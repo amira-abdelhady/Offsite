@@ -1,0 +1,38 @@
+<div class="container-fluid" id="regP">
+    <form #playerForm='ngForm' novalidate (ngSubmit)="onSubmit()" class="container mx-auto col-6 py-5" style="background-color: rgba(240, 255, 255, 0.596); top:50px">
+         <div class="form-group">
+          <label>Name :</label>
+          <input type="text" class="form-control" [class.is-invalid]="name.invalid && name.touched"
+          #name="ngModel" required [(ngModel)]="playerModel.playerName" name="playerName">
+         </div>
+            <div class="form-group">
+            <label>Phone :</label>
+            <input type="tel"
+            #phone="ngModel"[(ngModel)]="playerModel.playerPhone" name="playerPhone" placeholder="ex: 010 0209 987"
+            pattern="^01[0-2]{1}[0-9]{8}" required  class="form-control" [class.is-invalid]="phone.invalid && phone.touched">
+           </div> 
+           <div class="form-group">
+            <label>Location :</label>
+            <select class="form-control mb-3 text-success" #location="ngModel" required [(ngModel)]="playerModel.location" name="location" [class.is-invalid]="location.invalid && location.touched">
+              <option value="" disabled >Choose a city</option>
+              <option  *ngFor='let city of locations'>{{city}}</option>
+              </select>
+           </div>
+           <div class="form-group">
+            <label>Password :</label>
+            <input type="password" class="form-control" [class.is-invalid]="password.invalid && password.touched"
+            #password="ngModel" required [(ngModel)]="playerModel.password" name="password" >
+          </div>
+         <div class="form-group">
+           <label>repeat your password again:</label>
+           <input type="password" class="form-control" [class.is-invalid]="password2.invalid && password2.touched"
+           #password2="ngModel" required [(ngModel)]="playerModel.repeatPassword" name="repeatPassword" >
+         </div>
+            <input type="submit" [disabled]="playerForm.form.invalid" class="btn btn-success" value="Register">
+         <div *ngIf="err" class="row text-danger">{{Div}} </div>
+    </form>            
+   
+
+   
+       
+   

@@ -1,0 +1,34 @@
+.container-fluid{
+    background: url('../../../assets/images/admin2.jpg') no-repeat ;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 800px;
+    position: relative;
+    color: black;
+    font-size: x-large;
+  }
+  
+  
+  
+  main {
+      margin-top:1rem;
+      width: 50%;
+      margin: 1rem auto;
+      margin-top: 30px;
+    }
+    #l{
+      margin-bottom: 100px;
+    }
+     
+  mat-form-field {
+    width: 100%;
+  }
+  button{
+      color:blue;
+  }
+  
+  mat-spinner {
+    margin: auto;
+  }
+  

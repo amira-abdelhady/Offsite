@@ -1,0 +1,154 @@
+ <div class="container-fluid">
+    <div class="">
+        <div class="">
+            <div class="row upper">
+                <div class="col-6-lg col-md-12 col-sm-12 justify-content-center">
+                    <h1 class="upper_content mt-5 text-center text-wrap d-sm-none d-md-inline">football <br> playgrounds
+                    </h1>
+                </div>
+                <div class="col-6-lg col-md-12 col-sm-12">
+                    <img src="../../../assets/images/ball.png" class="img-responsive">
+                </div>
+
+            </div>
+            <section>
+                <div class="content justify-content-center">
+                    <h2 class="text-wrap text-center">FIND YOUR Playground</h2>
+                    <h5>
+                        Find football pitches in a range of cities across Egypt
+                        Choose a city to get started
+                    </h5>
+                </div>
+            </section>
+            <div class="container mx-auto">
+                <div class="row mt-5 justify-content-center">
+                    <form class="form-inline mx-auto">
+                        <label for="playgorundName"><i class="text-success fas fa-search"></i></label>
+
+                         
+                          
+                    <div>
+                     
+                        
+                        <input type="text" type="search" class="form-control m-2" id="playgorundName"
+                        placeholder="Enter a football playground name" [(ngModel)]="term" name="search">
+                    </div>
+
+                        <button type="button" class="btn btn-outline-success p-1 m-2" data-toggle="collapse"
+                            data-target="#filters">Advanced search <i class="fas fa-stream"></i></button>
+                    </form>
+                        
+                       
+                </div>
+                <div class="row justify-content-center collapse" id="filters"  style="margin-left: 30px;">
+                   
+                    <div class="col-lg-5 col-sm-12 mt-1">
+                        <i class="fas fa-pound-sign text-success"> /hr</i>
+                        <div class="form-check-inline ml-3">
+                            <label class="">
+                                <input type="checkbox" class="form-check-input" value="">50+
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label class="">
+                                <input type="checkbox" class="form-check-input" value="">50-100
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label class="">
+                                <input type="checkbox" class="form-check-input" value="">100-150
+                            </label>
+                            <button class="btn btn-success p-2" style="margin-left: 55px;" (click)="onSort()">Sort by price</button>
+
+
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4 mx-auto">
+
+        <div class="row pb-3">
+          
+            <div class="col-sm-12 col-lg-6 pb-3 pl-4" *ngFor="let playground of playgrounds |filter:term">
+                <div class="container">
+                    <div class="card p-3">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <img  (mouseover)='geNumOftBooking(playground.id)' class="card-img" style="height: 100%;" src="{{playground.imagePath}}"
+                                    alt="Playground image">
+                                <div class="clearfix align-bottom" id="popup">
+                                    <button class="btn btn-outline-success float-left mt-2"
+                                        (click)="onSelect(playground)">book online <i
+                                            class="fas fa-bolt text-warning"></i> </button>
+                                                 
+                                </div>
+                            </div>
+                            <div class="col-lg-7 p-4">
+                                <div class="card-body mt-lg-n4">
+                                    <h4 class="card-text pb-3">
+                                        <i class="far fa-flag text-success mr-2"></i>{{playground.name}}</h4>
+                                    <h5 class="card-text pb-3">{{playground.location}}<i
+                                            class="fas fa-map-marker-alt float-right"></i></h5>
+                                    <h5 class="card-text mt-2"> {{playground.price}}<i
+                                            class="float-right fas fa-pound-sign"> /hr</i></h5>
+                                            <button type="button" class="btn btn-outline-success float-left mt-2" 
+                                            data-toggle="modal" 
+                                            data-target="#myModal"
+                                            (mouseover)="showMap(playground.location)"
+                                            >
+                                                Show On Map
+                                              </button>          
+                                    <small class="pb-3">21 evening bookings available this week</small>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <agm-map [latitude]="lat" [longitude]="lng"></agm-map>
+            <agm-marker [latitude]="lat" [longitude]="lng" [label]="M"></agm-marker> 
+
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<!-- Modal -->
+ 
+
+<mat-paginator [length]="totalPlaygrounds" [pageSize]="playgroundsPerPage" [pageSizeOptions]="pageSizeOptions"
+    (page)="onChangedPage($event)" *ngIf="playgrounds.length > 0"></mat-paginator> 
+ 
+    <!-- <script src="../../../assets/js/location.js"></script>     -->
+
+    

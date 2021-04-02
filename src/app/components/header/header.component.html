@@ -1,0 +1,59 @@
+<div >
+  <nav class="navbar navbar-expand-lg fixed-top editnav navbar-light">
+    <div class="container">
+      <!-- <h1 class="navbar-brand">offSite</h1> -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse borderXwidt  text-center" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink=''>Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink='/playgrounds'>Playgrounds</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink='/adminDashboard' *ngIf="userIsAuthenticated  && !playerService.authorized">Admin Dashboard</a>
+      </li>
+      <li class="nav-item" *ngIf="userIsAuthenticated  && !playerService.authorized">
+        <a class="nav-link" routerLink='/edit' >My Playground</a>
+      </li>
+    </ul>
+
+    <span class="rightside"></span>
+
+    <ul class="navbar-nav">
+     
+      <li class="nav-item dropdown" *ngIf="!userIsAuthenticated && !playerService.authorized" >
+        <a class="nav-link" data-toggle="dropdown" id='dropdown'>Register</a>
+        <div class="dropdown-menu  text-center" id="dropdown-menu">
+            <a class="dropdown-item" routerLink='/admin-register'>Admin Register</a>
+            <a class="dropdown-item" routerLink='/player-register'>Player Register</a>
+          </div>
+      </li>
+      <li class="nav-item dropdown" *ngIf="!userIsAuthenticated && !playerService.authorized">
+        <a class="nav-link" data-toggle="dropdown" id="dropdown2">LogIn</a>
+        <div claY
+        ss="dropdown-menu text-center" id="dropdown-menu2">
+            <a class="dropdown-item" routerLink='/admin-login'>Admin LogIn</a>
+            <a class="dropdown-item" routerLink='/player-login'>Player LogIn</a>
+          </div>
+      </li>
+      <li class="nav-item text-center" *ngIf="userIsAuthenticated && !playerService.authorized">
+        <a class="nav-link" (click)="onLogout()" >LogOut</a>
+      </li>
+      <li class="nav-item dropdown" *ngIf="playerService.authorized && !userIsAuthenticated" >
+        <a class="nav-link playerOptions" data-toggle="dropdown" style="color: yellowgreen;">Hi {{playerName}} <h5 class="ml-1 text-dark far fa-user-circle"></h5> </a>
+          <div class="dropdown-menu mt-2 text-center">
+            <a class="dropdown-item" routerLink='/remove'>My bookings</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)='playerLogOut()'>Log out</a>
+          </div>
+      </li>
+    </ul>
+  
+  </div>
+</div>
+</nav>
+</div>

@@ -1,0 +1,97 @@
+
+<div class="container-fluid">
+  <div class="row">
+    
+    <div class="col-lg-4 col-sm-12" style="margin-top: 100px">
+      <a class="link t-10px" routerLink='/delete'>
+        <button class="btn btn-info" style="width: 200px;  height: 100px;">Delete</button>
+      </a>
+      <br>
+      <a class="link t-20px" routerLink='/booking'>
+        <button class="btn btn-info" style="margin-top: 10px; width: 200px;  height: 100px;"> Booking </button>
+      </a>
+      <br>
+      <a class="link t-20px" routerLink='/createPlayground'>
+        <button class="btn btn-info" style="margin-top: 10px; width: 200px;  height: 100px;">Create Playground</button>
+      </a>
+      <br>
+      <a class="link" routerLink='/edit'>
+        <button class="btn btn-info" style="margin-top: 10px; width: 200px;  height: 100px;">Edit</button>
+      </a>
+    </div>
+
+    <div class="col-lg-8 col-sm-12" style="margin-top:100px;">
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+      <main>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <mat-accordion  *ngIf="!isLoading">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <label for="name">Playground Name : </label>
+              {{ playground.name }}
+            </mat-expansion-panel-header>
+            <div class="playground-image mb-3">
+              <img [src]="playground.imagePath" [alt]="playground.name">
+            </div>
+            <div>
+             <label for="description">Playground Description : </label> 
+             <p>{{ playground.description }}</p>   
+            </div>
+    
+            <div>
+                <label for="owner">Playground Owner : </label>
+                <p>{{ playground.owner }}</p> 
+            </div>
+    
+            <div>
+                <label for="price">Playground Price : </label>
+                <p>{{ playground.price }}</p> 
+            </div>
+    
+            <div>
+                <label for="phone">Playground Phone : </label>
+                <p>{{ playground.phone }}</p> 
+            </div>
+    
+            <div>
+                <label for="location">Playground Location : </label>
+                <p>{{ playground.location }}</p> 
+            </div>
+            <mat-action-row>
+                <mat-select
+                name="playgroundAm" 
+                placeholder="Avaliable AM hours" >
+                <mat-option *ngFor="let hour of playground.amHours" [value]="hour">{{hour}}</mat-option>
+                </mat-select>
+            </mat-action-row>
+            <mat-action-row>
+                <mat-select
+                name="playgroundAm" 
+                placeholder="Avaliable PM hours" >
+                <mat-option *ngFor="let hour of playground.pmHours" [value]="hour">{{hour}}</mat-option>
+                </mat-select>
+            </mat-action-row>
+              <mat-action-row>
+                <a mat-button class="btn btn-primary" [routerLink]="['/edit', playground._id]">EDIT</a>  
+              </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <p class="info-text mat-body-1" *ngIf="!playground && !isLoading">No playground added yet!</p>
+
+     </main>
+    
+
+    </div>
+
+
+
+
+
+
+  </div>
+
+
+<!-- ////////// -->
+
+ 

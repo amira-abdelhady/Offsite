@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 col-sm-12" style="margin-top: 100px">
+            <a class="link t-10px" routerLink='/delete'>
+                <button class="btn btn-info" class="btn" style="width: 200px;  height: 100px;">Delete</button>
+            </a>
+            <br>
+            <a class="link t-20px" routerLink='/booking'>
+                <button class="btn btn-info" class="btn" style="margin-top: 10px; width: 200px;  height: 100px;">
+                    Booking </button>
+            </a>
+            <br>
+            <a class="link t-20px" routerLink='/createPlayground'>
+                <button class="btn btn-info" class="btn" style="margin-top: 10px; width: 200px;  height: 100px;">Create
+                    Playground</button>
+            </a>
+            <br>
+            <a class="link" routerLink='/edit'>
+                <button class="btn btn-info" class="btn"
+                    style="margin-top: 10px; width: 200px;  height: 100px;">Edit</button>
+            </a>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12"> 
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 mb-2" *ngFor="let booking of bookings">
+                    <div class="mm"
+                        style="margin-top:100px; width: 400px;  text-align:start; border-radius:5px;">
+
+                        <p><strong>Playground Name :</strong> {{booking.playgroundId.name}} </p>
+                        <p><strong>Booker Name :</strong> {{booking.playerId.name}} </p>
+                        <p><strong>Booker Phone :</strong>  {{booking.playerId.phone}}</p>
+                        <span><strong>Booking time :</strong>
+                            <ul>
+                                <li *ngFor='let hour of booking.bookingAmHours'>
+                                    {{hour}} AM
+                                </li>
+                                <li *ngFor='let hour of booking.bookingPmHours'>
+                                    {{hour}} PM
+                                </li>
+                            </ul>
+                        </span>
+                        <p><strong>Booking date :</strong> {{booking.bookingDate | date:'short'}}</p>
+                        <p><strong>Total Price :</strong> {{booking.totalPrice}} LE</p>
+                        <p><strong>Booked at:</strong> {{booking.reservationDate}}</p>
+                        <p><strong>Payment status :</strong> {{booking.statusOfPayment}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

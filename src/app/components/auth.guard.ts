@@ -1,0 +1,24 @@
+import {
+    CanActivate,
+    ActivatedRouteSnapshot,
+    RouterStateSnapshot,
+    Router
+  } from "@angular/router";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { AdminSrviceService } from "./services/admin-srvice.service";
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+  constructor(private authService: AdminSrviceService, private router: Router) {}
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean | Observable<boolean> | Promise<boolean> {
+    const isAuth = this.authService.getIsAuth();
+    if (!isAuth) {
+      this.router.navigate(['/admin-register']);
+    }
+    return isAuth;
+  }
+}

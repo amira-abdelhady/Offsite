@@ -1,0 +1,84 @@
+.rightside{
+    flex:1 1 auto;
+}
+
+.editnav{
+  /* background: linear-gradient(to right, #aaffa9, #11ffbd); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+
+.nav-link:nth-child(1){
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 20px;
+  position: relative;
+  text-decoration: none;
+  transition: 500ms ease-in;
+  transform-origin: left; 
+}
+.nav-link::after{
+  content: "م";
+  position: absolute;
+  left: 0px;bottom: 0;
+  height: 100%;
+  background: linear-gradient(to right, #ffffff0a, #fdfdfd96, white);
+  transform: scaleX(0);
+  transition: 500ms ease-in;
+  transform-origin: left;
+}
+.nav-link:nth-child(1):hover::after{
+  transform: scaleX(1);
+  right: 0;
+  left: 100%;
+  background: linear-gradient(to right, #ffffff0a, #fdfdfd96, white);
+}
+.nav-link:nth-child(1):hover{
+  background:white;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  transition-property: background; 
+}
+.nav-item{
+  position: relative;
+}
+.nav-link::before{
+  content: "";
+  /* position: absolute; */
+  left: 20px;top: 20px;
+  width: 100%;
+  height: 2px;
+  color: white;
+  transition: 500ms ease-in;
+  transform: translateX(50px);
+}
+.nav-item:hover::before{
+  transform: translateX(0);
+}
+.dropdown-menu{
+  background-color: rgba(255, 255, 255, 0);
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  text-shadow: 1px 1px rgba(8, 8, 8, 0.479);
+}
+.dropdown-item:hover{
+  color: white;
+  background-color:  linear-gradient(to right, #0f2027, #203a43, #2c5364);
+}
+.playerOptions:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+/* nav{
+  color: #353a3b80;
+} */
+
+
+

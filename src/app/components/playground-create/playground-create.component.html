@@ -1,0 +1,98 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3" style="top: 100px;">
+      <img src="./../../../assets/images/player.png" width="350px" height="550px">
+    </div>
+
+
+    <div class="col-6" style="margin-top: 70px;">
+
+      <main>
+        <mat-card>
+          <form [formGroup]="form" (submit)="onAddPlayground()">
+            <mat-form-field>
+              <input matInput type="text" name="playgroundName" formControlName='playgroundName'
+                [(ngModel)]="enterdPlayName" placeholder="playground Name">
+              <mat-error *ngIf="form.get('playgroundName').invalid">Please enter a playground name.</mat-error>
+            </mat-form-field>
+            <div>
+              <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+              <input type="file" #filePicker (change)="onImagePicked($event)">
+            </div>
+            <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid ">
+              <img [src]="imagePreview">
+            </div>
+            <mat-form-field>
+              <input matInput type="text" name="playgroundOwner" formControlName='playgroundOwner'
+                [(ngModel)]="enterdPlayOwner" placeholder="playground Owner">
+              <mat-error *ngIf="form.get('playgroundOwner').invalid">Please enter a playground owner.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" name="playgroundPrice" formControlName='playgroundPrice'
+                [(ngModel)]="enterdPlayPrice" placeholder="playground Price">
+              <mat-error *ngIf="form.get('playgroundPrice').invalid">Please enter a playground Price.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="text" pattern="^01[0-2]{1}[0-9]{8}" name="playgroundPhone"
+                formControlName='playgroundPhone' [(ngModel)]="enterdPlayPhone" placeholder="playground Phone">
+              <mat-error *ngIf="form.get('playgroundPhone').invalid">Please enter a playground Phone.</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select name="playgroundAm" formControlName='playgroundAm' placeholder="Avaliable AM hours"
+                [(value)]="selectedAmHours" multiple>
+                <mat-option *ngFor="let hour of avaliableList" [value]="hour">{{hour}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select name="playgroundPm" formControlName='playgroundPm' placeholder="Avaliable PM hours"
+                [(value)]="selectedPmHours" multiple>
+                <mat-option *ngFor="let hour of avaliableList" [value]="hour">{{hour}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select name="playgroundLocation" formControlName='playgroundLocation' placeholder="Location"
+                [(value)]="selectedLocation">
+                <mat-option *ngFor="let site of locations" [value]="site">{{site}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <textarea matInput rows="4" name="description" formControlName='description' [(ngModel)]="enterdPlayDesc"
+                placeholder="playground Description">
+                          </textarea>
+              <mat-error *ngIf="form.get('description').invalid">Please enter a playground description.</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="btn btn-success" type="submit">Save Playground</button>
+
+          </form>
+
+
+        </mat-card>
+
+      </main>
+
+    </div>
+
+
+
+    <div class="col-3" style="margin-top: 100px">
+      <a class="link t-10px" routerLink='/delete'>
+        <button class="btn btn-info" style="width: 200px;  height: 100px;">Delete</button>
+      </a>
+      <br>
+      <a class="link t-20px" routerLink='/booking'>
+        <button class="btn btn-info" style="margin-top: 10px; width: 200px;  height: 100px;"> Booking </button>
+      </a>
+      <br>
+      <a class="link t-20px" routerLink='/createPlayground'>
+        <button class="btn btn-info" style="margin-top: 10px; width: 200px;  height: 100px;">Create Playground</button>
+      </a>
+      <br>
+      <a class="link" routerLink='/edit'>
+        <button class="btn btn-info" style="margin-top: 10px; width: 200px;  height: 100px;">Edit</button>
+      </a>
+    </div>
+
+
+  </div>
+

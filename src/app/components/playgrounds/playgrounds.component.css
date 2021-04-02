@@ -1,0 +1,218 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.upper{
+    width:100%; height:600px;
+    position: relative;
+    background: url('../../../assets/images/header.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* .upper:hover{
+    background-position: left center;
+    transition: 40s ease;
+    transition-property: background-position;
+} */
+.upper img{
+    width:40%; height:400px;
+    transform: rotateY(180deg);
+    
+}
+.upper_content{
+    top:180px;
+    left:520px; 
+    font-size: 50px;
+    position: absolute;
+    text-transform: uppercase;
+    text-shadow:-5px 0 rgb(11, 73, 3),0px -5px rgb(255, 255, 255);
+}
+
+section{
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding:40px;
+}
+
+section .content h2{
+    font-size: 90px;
+    text-transform: uppercase;
+    text-shadow:-1px 0 rgba(0, 0, 0, 0.137);
+    font-weight: 900;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: url('../../../assets/images/3.png');
+    background-position: center center;
+    background-size:900px 500px;
+    background-origin: border-box;
+    background-attachment: fixed;
+    max-width: 1000px;
+}
+section .content h5{
+    font-size: 30px;
+    padding-top: 40px;
+
+}
+/* #header{ 
+    z-index: 10;
+    width: 100%;
+    height: 500px;
+    position: relative;
+    background: url('../../../assets/images/playground2.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.overhead{
+    padding-top: 250px;
+    font-size:50px;
+    color: #ffffff;
+} */
+.card:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card:hover .card-img{
+    opacity: 0.3;
+}
+.card #popup{
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: -15%;
+    transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%)
+}
+agm-map {
+    height: 260px;
+  }
+ 
+  
+  
+   
+.card:hover #popup{
+    opacity: 1;
+    transition: .5s ease;
+}
+.card small{
+    visibility: hidden;
+}
+.card:hover small{
+    visibility: initial;
+}
+@media only screen and (max-width: 600px) {
+    
+    .card #popup{
+        transform: translate(100%, -50%);
+    }
+    .card:hover #popup button{
+        font-size:25px;
+    }
+    .upper_content{
+        display: none;
+    }
+}
+@media only screen and (min-width: 600px) {
+    
+    .card #popup{
+        transform: translate(80%, -50%);
+        /* 70 */
+    }
+    .card:hover #popup button{
+        font-size:40px;
+        /* 35 */
+    }
+}
+@media only screen and (min-width: 768px) {
+    
+    .card #popup{
+        transform: translate(80%, -50%);
+    }
+    .card:hover #popup button{
+        font-size:55px;
+        /* 45 */
+    }
+}
+@media only screen and (min-width: 992px) {
+    
+    .card #popup{
+        transform: translate(40%, -50%);
+    }
+    .card:hover #popup button{
+        font-size:20px;
+        /* 17 */
+    }
+}
+@media only screen and (min-width:1200px) {
+    
+    .card #popup{
+        transform: translate(40%, -50%);
+    }
+    .card:hover #popup button{
+        font-size:25px; 
+        /* 20 */
+    }
+}
+/*  @media screen and (max-width:913px){
+
+    .card #popup{
+        left: 0;
+    }
+    .card:hover #popup button{
+        font-size:50px;
+    }
+} @media screen and (max-width:425px){
+
+    .card #popup{
+        left: -17px;
+    }
+    .card:hover #popup button{
+        font-size:30px;
+    }
+} @media screen and (max-width:375px){
+
+    .card #popup{
+        left: -17px;
+    }
+    .card:hover #popup button{
+        font-size:25px;
+    }
+} @media screen and (max-width:320px){
+
+    .card #popup{
+        left: -17px;
+    }
+    .card:hover #popup button{
+        font-size:20px;
+    }
+} */
+/* 
+-----
+@media screen and (max-width:576px){
+
+    .card #popup{
+        left: 0;
+    }
+    .card:hover #popup button{
+        font-size:50px;
+    }
+} */
+/*
+ .triangle {
+    position: absolute;
+    bottom:50px;
+    left: 50%;
+    margin-left: -24px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 23px 23px 0 23px;
+    border-color: #ffffff transparent transparent transparent;
+} */
+

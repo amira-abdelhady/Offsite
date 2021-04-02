@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+            <main style="margin-top: 70px;"> 
+                <mat-card> 
+                   <form (submit)="onAdminReset(resetForm)" #resetForm="ngForm">
+                       <mat-form-field>  
+                           <input
+                            matInput
+                            type="text"
+                        
+                            class="form-control"
+                            name="adminPhone" 
+                            ngModel
+                            placeholder="Phone"
+                            #phoneInput="ngModel"  
+                            required
+                            >
+                            <mat-error *ngIf="phoneInput.invalid">Please enter a valid phone number.</mat-error> 
+       
+                      </mat-form-field>
+ 
+                    <button 
+                     mat-raised-button 
+                     type="submit" 
+                     class="btn btn-primary"
+                      >Rest</button>
+                    
+                   </form> 
+                  
+       
+           
+               </mat-card>
+           </main> 
+    </div>
+</div>

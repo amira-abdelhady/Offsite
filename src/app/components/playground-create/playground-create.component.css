@@ -1,0 +1,49 @@
+.container-fluid{
+  /* background-image: url('./../../../assets/images/stadium.webp'); */
+  background-color: rgba(33, 146, 58, 0.404);
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 800px;
+  position: relative;
+  margin-bottom: 100PX;
+}
+
+button:hover{
+    
+  transform: scale(1.1);
+box-shadow: 0 5px 20px rgb(0,0,0,1);
+
+}
+
+
+main {
+  margin-top:5rem;
+  width: 80%;
+  margin: 1rem auto;
+}
+#l{
+  margin-bottom: 100px;
+}
+
+mat-form-field,
+textarea {
+  width: 100%;
+}
+button{
+    color:green
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.image-preview {
+  height: 5rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
+}
+

@@ -1,0 +1,12 @@
+
+
+#logP{
+    background: url('../../../assets/images/login.webp') no-repeat ;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 800px;
+    position: relative;
+    /* top: 30px; */
+    color:#000;
+}

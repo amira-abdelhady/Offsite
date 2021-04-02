@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     
+    <!-- <title>The Palyground </title> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"> -->
+ 
+ 
+
+</head>
+
+<body>
+     
+
+ <mat-spinner *ngIf='isLoading'></mat-spinner>
+  <main *ngIf='!isLoading'> 
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img d-flex align-items-center justify-content-center" style="background-image: url(https://images.unsplash.com/photo-1560272564-c83b66b1ad12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1374&q=80);">
+        <div class="bradcumbContent">
+            <h2>{{playground.name}}</h2>
+        </div>
+        <h2 *ngIf='numberOfbookings>=3' data-toggle="tooltip" title="this football playground earned more than 3 bookings in this month"><i class="fas fa-certificate" [style.color]="numberOfbookings<=5 ? '#c28b38' : numberOfbookings<=10 ? 'silver' : 'gold'" style="margin:50px -30px;"></i></h2>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+    <!-- ##### Book Now Area Start ##### -->
+    <div class="book-now-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-12">
+                    <div class="book-now-form ">
+                        <form #bookingModel='ngForm' novalidate (ngSubmit)='makeBooking(userSelectedDate,playground._id,bookingModel.selectedHoursAM,bookingModel.selectedHoursPM)'>
+                            
+                            <!-- Form Group -->
+                            <div class="form-group"><!-- 
+                                <label for="select1">Day</label>
+                                <input [(ngModel)]="bookingModel.selectedDate" name="selectedDate" #date="ngModel" class="form-control" type="date" [value]="hh"> -->
+                                <mat-form-field>
+                                      
+                                    <label>Choose a date</label>
+                                    <input matInput [matDatepicker]="picker" [min]="minDate" (dateChange)="valueChanged($event)" [(value)]="userSelectedDate" name="selectedDate" value="userSelectedDate">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field> 
+                            </div>
+ 
+                            <!-- Form Group -->
+                            <div class="form-group"> 
+                                <mat-form-field>
+                                    <label for="select3">AM Reservation</label>
+                                    <mat-select  [(ngModel)]="bookingModel.selectedHoursAM" name="selectedHoursAM" #am="ngModel" multiple>
+                                      <mat-option *ngFor="let hour of playground.amHours" [value]="hour">{{hour}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <!-- Form Group -->
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <label for="select3">PM Reservation</label>
+                                    <mat-select [(ngModel)]="bookingModel.selectedHoursPM" name='selectedHoursPM' #pm="ngModel" multiple>
+                                      <mat-option *ngFor="let hour of playground.pmHours" [value]="hour">{{hour}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <!-- Button  data-toggle="modal" data-target="#myModal"-->
+                            <button type="submit" >Book Now</button>
+                             <div class="row">
+                                <!-- The Modal -->
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                        <h4 class="modal-title">booking information</h4>
+                                        <button class="close" data-dismiss="modal"> &times;</button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                        <h3> Booking total price: {{totalPriceOfBooking}}</h3>
+                                        <h3> At: {{bookingModel.selectedDate}}</h3>
+                                            <h3>Hours you selected:
+                                                <ul>
+                                                    <li *ngFor='let hour of bookingModel.selectedHoursAM'>{{hour}} AM</li>
+                                                    <li *ngFor='let hour of bookingModel.selectedHoursPM'>{{hour}} PM</li>
+                                                </ul>
+                                            </h3> 
+                                        </div>
+                                        
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                        <button type="button" style="float:left !important;">I'm sure of this booking lets go</button>
+                                        </div>
+                                        
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Book Now Area End ##### -->
+
+    <!-- ##### About Us Area Start ##### -->
+    <section class="about-us-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6">
+                    <div class="about-text mb-100">
+                        <div class="section-heading">
+                            <div class="line-"></div>
+                            <h2>{{playground.name}}</h2>
+                        </div>
+                        <p>{{playground.description}}</p>
+                        <a href="#" class="btn palatin-btn mt-50">Read More</a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <div class="about-thumbnail mb-100">
+                        <img src="{{playground.imagePath}}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### About Us Area End ##### -->
+
+    <!-- ##### Milestones Area Start ##### -->
+    <section class="our-milestones section-padding-100-0 bg-img bg-overlay bg-fixed" style="background-image: url(https://images.unsplash.com/photo-1543351611-58f69d7c1781?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="section-heading text-center white">
+                        <div class="line-"></div>
+                        <h2>What we offer</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <!-- Single Hotel Info -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-hotel-info mb-100">
+                        <div class="hotel-info-text">
+                            <div class="text-center mb-5"> <i class="fas fa-tshirt"></i></div>
+                            <h5 style="color: white;"> The changing rooms on offer here are excellent. They are well-equipped and help to provide an additional excellence to this already outstanding sports facility. Ask about availability beforehand to ensure they have not been ‘booked out’ by another customer.</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Hotel Info -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-hotel-info mb-100">
+                        <div class="hotel-info-text">
+                            <div class="text-center mb-5"><i class="fas fa-parking"></i></div>
+                            <h5 style="color: white;">Those driving are able to park free of charge at the facility. There are limited spaces available with weekends being particularly popular. The best parking availability is during the day and before 5pm.</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Hotel Info -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-hotel-info mb-100">
+                        <div class="text-center mb-5"><i class="fas fa-money-bill-wave"></i></div>
+                        <div class="hotel-info-text">
+                            <h5 style="color: white;">Customers will be pleased to know that the venue operates a pay-as-you-play booking system. This means sports enthusiasts can just turn up and play depending on availability and book on a pay as you play basis. This method avoids the monthly membership charges and gives you the freedom to play as and when you like, without the commitment of a weekly game or a membership fee.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Testimonial Area Start ##### -->
+    <section class="testimonial-area section-padding-100 bg-img" style="background-image: url(https://images.unsplash.com/photo-1509928015542-fcc9b3bcd048?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="testimonial-content">
+                        <div class="section-heading text-center">
+                            <div class="line-"></div>
+                            <h2>What Clients Say</h2>
+                        </div>
+                        
+                        <!-- Testimonial Slides -->
+                        <div class="testimonial-slides owl-carousel">
+                            
+                            <!-- Single Testimonial -->
+                            <div class="single-testimonial">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+                                <h6>Michael Smith, <span>Client</span></h6>
+                                  
+                            </div>
+                            
+                            <!-- Single Testimonial -->
+                            <div class="single-testimonial">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris sceleri sque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+                                <h6>Nazrul Islam, <span>Developer</span></h6>
+                                 
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Testimonial Area End ##### -->
+
+</main>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="../../../assets/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="../../../assets/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../../../assets/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="../../../assets/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="../../../assets/js/active.js"></script>
+</body>
+
+</html>
